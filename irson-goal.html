@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Irson's Goal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style id="css">
+:root{--bg:#0f1b2d;--card:#172840;--card2:#1e3352;--gold:#f2c14e;--gold2:#ffdd8a;--text:#eef2f8;--muted:#9fb0c8;--green:#4cd39a;--line:#2a4266}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:84px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding:20px 16px}
+header{text-align:center;padding:18px 0 14px}
+header .star{font-size:30px}
+header h1{font-size:28px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--muted);font-size:13px;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.card h2{font-size:17px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2 small{margin-left:auto;font-size:12px;color:var(--muted);font-weight:500}
+.aff{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.55}
+.aff:last-child{border-bottom:none}
+.aff .i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-size:14px}
+.btn{display:block;width:100%;border:none;border-radius:14px;padding:15px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1a1300;margin-top:14px}
+.btn.done{background:var(--card2);color:var(--green);cursor:default}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stat b{display:block;font-size:26px;color:var(--gold)}
+.stat span{font-size:12px;color:var(--muted)}
+.next{background:linear-gradient(135deg,#24406b,#172840);}
+.next .big{font-size:40px;font-weight:800;color:var(--gold)}
+.next .lbl{color:var(--muted);font-size:13px}
+.next .t{font-size:16px;font-weight:600;margin:6px 0 2px}
+.subj{padding:12px 0;border-bottom:1px solid var(--line)}
+.subj:last-child{border-bottom:none}
+.subj .top{display:flex;justify-content:space-between;font-weight:600;font-size:15px;margin-bottom:8px}
+.subj .top em{font-style:normal;color:var(--gold)}
+.bar{height:8px;background:var(--card2);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:8px;transition:width .3s}
+.steps{display:flex;gap:6px;margin-top:10px}
+.steps button{flex:1;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:10px;padding:8px 0;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.steps button:active{transform:scale(.96)}
+.goal{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.goal:last-child{border-bottom:none}
+.chk{flex:none;width:28px;height:28px;border-radius:9px;border:2px solid var(--gold);background:transparent;color:#1a1300;font-size:16px;font-weight:800;cursor:pointer;display:grid;place-items:center}
+.chk.on{background:var(--green);border-color:var(--green)}
+.goal .body{flex:1}
+.goal .title{font-size:15px;font-weight:600;line-height:1.45}
+.goal.done .title{color:var(--muted);text-decoration:line-through}
+.goal .meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:3px 9px;border-radius:20px;background:var(--card2);color:var(--muted)}
+.pill.g{color:var(--gold)}
+.pill.ok{color:var(--green)}
+.list{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card2);border-radius:12px;cursor:pointer;font-size:14px;user-select:none}
+.row .chk{width:24px;height:24px;font-size:13px;border-radius:7px}
+.row.on span{color:var(--muted)}
+.row .tag{margin-left:auto;font-size:11px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.5;text-align:center;padding:4px 10px 10px}
+.closing{text-align:center;font-size:15px;line-height:1.7;color:var(--gold2);font-weight:600}
+nav{position:fixed;left:0;right:0;bottom:0;background:rgba(15,27,45,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 6px 12px;z-index:9}
+nav .in{display:flex;max-width:560px;width:100%}
+nav button{flex:1;background:none;border:none;color:var(--muted);font:inherit;font-size:11px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0}
+nav button .e{font-size:21px;filter:grayscale(.7);opacity:.7}
+nav button.on{color:var(--gold)}
+nav button.on .e{filter:none;opacity:1}
+#saving{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--line);color:var(--muted);font-size:12px;padding:6px 14px;border-radius:20px;opacity:0;transition:opacity .3s;z-index:10;pointer-events:none}
+#saving.show{opacity:1}
+</style>
+</head>
+<body>
+<div id="saving">Menyimpan…</div>
+<div class="wrap" id="root"></div>
+<nav><div class="in" id="nav"></div></nav>
+<script type="application/json" id="state">{}</script>
+<script id="app">
+(function(){
+var AFF=[
+ ["👂","Telinga aku semuanya good listening, sembuh, bisa mendengar lebih jelas, tubuh aku semuanya lengkap, sempurna, berfungsi dengan baik, dan normal."],
+ ["🇺🇸","Tuhan sudah kasih kita tinggal di negara yang no. 1 paling bagus untuk kita adalah tinggal di Amerika (United States), gak usah pindah, gak usah pikir negara lain lagi."],
+ ["🏠","Single, tidak ada cewek, tinggal bareng papi, mami, dan Kelly, gak usah pikir cewek lagi."],
+ ["💛","Aku mau mami sehat-sehat, mami bisa panjang umur, mami bisa temanin aku selamanya."]
+];
+var SUBJ=[["web","💻","Web Development"],["en","🗣️","English"],["zh","🀄","Mandarin Chinese"],["ai","🤖","AI"],["vid","🎬","Video Editing"],["sm","📱","Social Media"]];
+var GOALS=[
+ ["learn","📚","Selesai belajar Web Development, English, Mandarin Chinese, AI, Video Editing, dan Social Media, biar aku bisa cari uang lebih banyak lagi.","2028-10-01"],
+ ["remote","💼","Kerja remote di perusahaan Amerika (United States).","2028-11-30"],
+ ["nainai","🩺","Berobat nainai di Amerika (United States), biar nainai sehat-sehat, nainai bisa panjang umur.","2029-10-01"],
+ ["tesla","🚗","Beli mobil Tesla, biar bisa jalan-jalan keliling Amerika (United States).","2030-05-15"],
+ ["home","🏡","Beli rumah di 83-45 Vietor Avenue, Elmhurst, Queens, New York, Amerika (United States), biar kita tidak pindah rumah lagi.","2031-06-30"],
+ ["forever","🌏","Kita tinggal di Amerika (United States) selamanya, jalan-jalan di 2 negara: Amerika (United States) dan Indonesia, jenguk keluarga di Indonesia.","2036-01-01"]
+];
+var TRAVEL=[["us","🇺🇸","United States",""],["id","🇮🇩","Indonesia",""],["cn","🇨🇳","China","1 kali"],["sg","🇸🇬","Singapore","1 kali"],["my","🇲🇾","Malaysia","1 kali"],["jp","🇯🇵","Japan","1 kali"],["kr","🇰🇷","South Korea","1 kali"],["nl","🇳🇱","Netherlands","1 kali"],["au","🇦🇺","Australia","1 kali"],["vn","🇻🇳","Vietnam","1 kali"]];
+var PLACES=["🇺🇸 United States (USA)","DKI Jakarta","DI Yogyakarta","Bali","Riau Islands (Kepulauan Riau)","East Kalimantan (Kaltim)","Banten","West Java (Jabar)","East Java (Jatim)","Central Java (Jateng)","North Sumatra (Sumut)","South Sulawesi (Sulsel)","South Sumatra (Sumsel)","Riau","West Sumatra (Sumbar)","North Sulawesi (Sulut)","Bangka Belitung Islands","South Kalimantan (Kalsel)","Lampung","Aceh","Jambi","West Kalimantan (Kalbar)","Southeast Sulawesi (Sultra)","Central Sulawesi (Sulteng)","Bengkulu","West Nusa Tenggara (NTB)","Central Kalimantan (Kalteng)","North Kalimantan (Kaltara)","Gorontalo","Maluku","North Maluku (Malut)","West Sulawesi (Sulbar)","East Nusa Tenggara (NTT)","West Papua (Papua Barat)","Papua (Mother Province)","Southwest Papua","South Papua","Central Papua","Highland Papua"];
+
+var S;
+try{S=JSON.parse(document.getElementById('state').textContent)||{}}catch(e){S={}}
+S.learn=S.learn||{};S.goals=S.goals||{};S.travel=S.travel||{};S.places=S.places||{};S.days=S.days||[];
+var tab=(location.hash||'').slice(1)||'home';
+if(['home','learn','goals','travel'].indexOf(tab)<0)tab='home';
+var art=null,useLocal=false;
+
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function daysTo(iso){var p=iso.split('-'),t=new Date(+p[0],p[1]-1,+p[2]),n=new Date();n.setHours(0,0,0,0);return Math.round((t-n)/864e5)}
+function fmtDate(iso){var b=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],p=iso.split('-');return (+p[2])+' '+b[p[1]-1]+' '+p[0]}
+function fmtLeft(n){if(n<0)return 'Lewat '+(-n)+' hari';if(n===0)return 'Hari ini!';var y=Math.floor(n/365),m=Math.floor((n%365)/30);return n+' hari lagi'+(y?' (±'+y+' thn'+(m?' '+m+' bln':'')+')':'')}
+function streak(){var set={};S.days.forEach(function(d){set[d]=1});var c=0,d=new Date();if(!set[today()])d.setDate(d.getDate()-1);while(true){var k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if(set[k]){c++;d.setDate(d.getDate()-1)}else break}return c}
+function avgLearn(){var t=0;SUBJ.forEach(function(s){t+=S.learn[s[0]]||0});return Math.round(t/SUBJ.length)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+function viewHome(){
+ var done=S.days.indexOf(today())>=0;
+ var nx=null;GOALS.forEach(function(g){if(!nx&&!S.goals[g[0]]&&daysTo(g[3])>=0)nx=g});
+ var h='<div class="stats"><div class="stat"><b>🔥 '+streak()+'</b><span>hari berturut-turut</span></div><div class="stat"><b>'+avgLearn()+'%</b><span>progres belajar</span></div></div>';
+ if(nx)h+='<div class="card next"><div class="lbl">Target berikutnya '+nx[1]+'</div><div class="t">'+esc(nx[2])+'</div><div class="big">'+daysTo(nx[3])+'</div><div class="lbl">hari lagi · '+fmtDate(nx[3])+'</div></div>';
+ h+='<div class="card"><h2>🙏 Afirmasi Hari Ini<small>'+fmtDate(today())+'</small></h2>';
+ AFF.forEach(function(a){h+='<div class="aff"><div class="i">'+a[0]+'</div><div>'+esc(a[1])+'</div></div>'});
+ h+=done?'<button class="btn done">✓ Sudah dibaca hari ini</button>':'<button class="btn" data-act="read">Aku sudah baca & percaya hari ini ✨</button>';
+ h+='</div><div class="card closing">Aku mau yang ini bisa jadi real di masa depan.<br>Yang ini semuanya 100% benar banget.<br>Papi, mami, aku, dan Kelly semuanya ingat banget.<br>Aku mau impian ini bisa tercapai. 🌟</div>';
+ return h;
+}
+function viewLearn(){
+ var h='<div class="card next"><div class="lbl">Target selesai belajar 📚</div><div class="big">'+daysTo('2028-10-01')+'</div><div class="lbl">hari lagi · 1 Okt 2028</div><div class="bar" style="margin-top:12px"><i style="width:'+avgLearn()+'%"></i></div><div class="lbl" style="margin-top:6px">Rata-rata '+avgLearn()+'%</div></div>';
+ h+='<div class="card"><h2>🎯 Aku Mau Fokus Belajar</h2>';
+ SUBJ.forEach(function(s){var v=S.learn[s[0]]||0;
+  h+='<div class="subj"><div class="top"><span>'+s[1]+' '+s[2]+'</span><em>'+v+'%</em></div><div class="bar"><i style="width:'+v+'%"></i></div><div class="steps"><button data-act="lrn" data-k="'+s[0]+'" data-d="-10">−10</button><button data-act="lrn" data-k="'+s[0]+'" data-d="-1">−1</button><button data-act="lrn" data-k="'+s[0]+'" data-d="1">+1</button><button data-act="lrn" data-k="'+s[0]+'" data-d="10">+10</button></div></div>'});
+ return h+'</div><p class="note">Tambah persennya setiap kali selesai satu pelajaran, kursus, atau proyek.</p>';
+}
+function viewGoals(){
+ var n=0;GOALS.forEach(function(g){if(S.goals[g[0]])n++});
+ var h='<div class="card"><h2>🏆 Impian & Target<small>'+n+'/'+GOALS.length+' tercapai</small></h2>';
+ GOALS.forEach(function(g){var on=!!S.goals[g[0]],d=daysTo(g[3]);
+  h+='<div class="goal'+(on?' done':'')+'"><button class="chk'+(on?' on':'')+'" data-act="goal" data-k="'+g[0]+'">'+(on?'✓':'')+'</button><div class="body"><div class="title">'+g[1]+' '+esc(g[2])+'</div><div class="meta"><span class="pill g">📅 '+fmtDate(g[3])+'</span><span class="pill'+(on?' ok':'')+'">'+(on?'Tercapai! 🎉':fmtLeft(d))+'</span></div></div></div>'});
+ return h+'</div>';
+}
+function viewTravel(){
+ var a=0,b=0;TRAVEL.forEach(function(t){if(S.travel[t[0]])a++});PLACES.forEach(function(p,i){if(S.places[i])b++});
+ var h='<div class="card"><h2>✈️ Jalan-jalan ke<small>'+a+'/'+TRAVEL.length+'</small></h2><div class="list">';
+ TRAVEL.forEach(function(t){var on=!!S.travel[t[0]];h+='<div class="row'+(on?' on':'')+'" data-act="trv" data-k="'+t[0]+'"><div class="chk'+(on?' on':'')+'">'+(on?'✓':'')+'</div><span>'+t[1]+' '+t[2]+'</span><span class="tag">'+t[3]+'</span></div>'});
+ h+='</div></div><div class="card"><h2>🗺️ Tempat Paling Bagus<small>'+b+'/'+PLACES.length+'</small></h2><div class="list">';
+ PLACES.forEach(function(p,i){var on=!!S.places[i];h+='<div class="row'+(on?' on':'')+'" data-act="plc" data-k="'+i+'"><div class="chk'+(on?' on':'')+'">'+(on?'✓':'')+'</div><span>'+(i+1)+'. '+(i?'🇮🇩 ':'')+esc(p)+'</span></div>'});
+ return h+'</div></div><p class="note">Centang tempat yang sudah dikunjungi.</p>';
+}
+var TABS=[["home","🏠","Beranda",viewHome],["learn","📚","Belajar",viewLearn],["goals","🏆","Target",viewGoals],["travel","✈️","Jalan-jalan",viewTravel]];
+function render(){
+ var v;TABS.forEach(function(t){if(t[0]===tab)v=t[3]});
+ document.getElementById('root').innerHTML='<header><div class="star">⭐</div><h1>Irson\'s Goal</h1><p>Papi · Mami · Irson · Kelly</p></header>'+v();
+ document.getElementById('nav').innerHTML=TABS.map(function(t){return '<button class="'+(t[0]===tab?'on':'')+'" data-tab="'+t[0]+'"><span class="e">'+t[1]+'</span>'+t[2]+'</button>'}).join('');
+}
+
+var timer=null;
+function save(){
+ var el=document.getElementById('saving');el.classList.add('show');
+ clearTimeout(timer);
+ timer=setTimeout(function(){
+  if(art){
+   var json=JSON.stringify(S).replace(/</g,'\\u003c');
+   var html='<!DOCTYPE html>\n<html lang="id">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Irson\'s Goal</title>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">\n<style id="css">'+document.getElementById('css').textContent+'</style>\n</head>\n<body>\n<div id="saving">Menyimpan…</div>\n<div class="wrap" id="root"></div>\n<nav><div class="in" id="nav"></div></nav>\n<script type="application/json" id="state">'+json+'<\/script>\n<script id="app">'+document.getElementById('app').textContent+'<\/script>\n</body>\n</html>';
+   art.publish(html).catch(function(){useLocal=true;saveLocal();el.classList.remove('show')});
+  }else{saveLocal();el.classList.remove('show')}
+ },1800);
+}
+function saveLocal(){try{localStorage.setItem('irsonGoal',JSON.stringify(S))}catch(e){}}
+
+document.addEventListener('click',function(e){
+ var t=e.target.closest('[data-tab]');
+ if(t){tab=t.getAttribute('data-tab');try{history.replaceState(null,'','#'+tab)}catch(x){location.hash=tab}render();window.scrollTo(0,0);return}
+ var a=e.target.closest('[data-act]');if(!a)return;
+ var act=a.getAttribute('data-act'),k=a.getAttribute('data-k');
+ if(act==='read'){if(S.days.indexOf(today())<0)S.days.push(today());if(S.days.length>800)S.days=S.days.slice(-800)}
+ else if(act==='lrn'){S.learn[k]=Math.max(0,Math.min(100,(S.learn[k]||0)+(+a.getAttribute('data-d'))))}
+ else if(act==='goal'){S.goals[k]=!S.goals[k]}
+ else if(act==='trv'){S.travel[k]=!S.travel[k]}
+ else if(act==='plc'){S.places[k]=!S.places[k]}
+ render();save();
+});
+window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(h&&h!==tab){tab=h;render()}});
+
+render();
+if(window.claude&&claude.use){
+ claude.use('artifact').then(function(x){art=x;if(!x)loadLocal()}).catch(loadLocal);
+}else loadLocal();
+function loadLocal(){if(Object.keys(JSON.parse(document.getElementById('state').textContent)||{}).length)return;try{var l=JSON.parse(localStorage.getItem('irsonGoal')||'null');if(l){S=l;S.learn=S.learn||{};S.goals=S.goals||{};S.travel=S.travel||{};S.places=S.places||{};S.days=S.days||[];render()}}catch(e){}}
+})();
+</script>
+</body>
+</html>
